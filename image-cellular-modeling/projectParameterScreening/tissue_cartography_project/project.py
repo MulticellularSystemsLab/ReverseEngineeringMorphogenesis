@@ -4,13 +4,16 @@ Created on Thu Feb 18 22:10:00 2021
 
 @author: Nilay
 """
+
 # importing the flow library
+import os
 from flow import FlowProject
 # Importing the geometry_writer class containing geometryWriter function that is used to write
 # Surface Evolver initialization file
 from geometry_writer import geometryWriter
 
 # Checking if an operation has been executed by checking f the initialization file exists
+@FlowProject.label
 def SE_file_exist_check(job):
 	return os.path.isfile("wingDisc.fe")
 

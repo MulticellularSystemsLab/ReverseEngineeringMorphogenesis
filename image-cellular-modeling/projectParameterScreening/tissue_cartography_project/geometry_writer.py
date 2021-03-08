@@ -30,7 +30,8 @@ class geometryWriter:
 	def __init__(self,inputArr,paramPressure, outputFileName):		
 		self.inpts = inputArr
 		self.systemPressure = paramPressure
-		self.outputFileName = f"{self.outputDirectory}\\{outputFileName}.fe"
+
+		self.outputFileName = f"{outputFileName}.fe"
 		with open(self.outputFileName,"w+") as wf:
 			wf.write("\n")
 		self.writeParameters()
