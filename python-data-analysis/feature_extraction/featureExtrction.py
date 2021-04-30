@@ -25,7 +25,7 @@ import spatial_efd
 import math
  
 # Read the data containing vertex positions and edge attributes
-df1 = pd.read_excel('geometryfinal.xlsx')
+df1 = pd.read_excel('geometryinitial.xlsx')
 v_id = df1['id']
 vpos_x = df1['x']
 vpos_y = df1['y']
