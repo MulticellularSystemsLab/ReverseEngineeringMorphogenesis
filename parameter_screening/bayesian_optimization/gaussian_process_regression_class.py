@@ -10,17 +10,18 @@ import torch
 import gpytorch
 import pandas as pd
 import matplotlib.pyplot as plt
-import spatial_efd
 import math 
-import signac
 import numpy as np
 import os
 import os.path
-#from exact_gp_model import ExactGPModel
 
 class gaussianProcessRegression:
 	
+	""" Initializion:
+			Data_x: Input variable for the GPR
+			Data_y: Output variables for the GPR
 	
+	"""
 	def __init__(self, data_x, data_y):
 		self.data_x = data_x
 		self.data_y = data_y
@@ -65,6 +66,7 @@ class gaussianProcessRegression:
 			
 		Output:
 			The GPR model
+			Likelihood of the model
 		"""
 		# initialize likelihood and model		
 		likelihood = gpytorch.likelihoods.GaussianLikelihood()
@@ -134,6 +136,6 @@ class gaussianProcessRegression:
 		# Saving the figure
 		plt.savefig(filename)
 		# returning the gpr modeling
-		return model
+		return model, likelihood
 		
 		
