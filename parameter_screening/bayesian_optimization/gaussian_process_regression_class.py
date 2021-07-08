@@ -39,9 +39,9 @@ class gaussianProcessRegression:
 	"""	
 	def split_data(self, split_size, num_samples):
 		# Splitting the data and convert the datatype to a tensor
-		train_x = torch.from_numpy(self.data_x[:split_size,:])
-		train_y = torch.from_numpy(self.data_y[:split_size])
-		test_x = torch.from_numpy(self.data_x[split_size:num_samples,:])
+		train_x = self.data_x[:split_size,:]
+		train_y = self.data_y[:split_size]
+		test_x = self.data_x[split_size:num_samples,:]
 		test_y = self.data_y[split_size:num_samples]
 		# returning the training and test datasets
 		return train_x, train_y, test_x, test_y
@@ -68,10 +68,14 @@ class gaussianProcessRegression:
 			The GPR model
 			Likelihood of the model
 		"""
+		train_x_t = torch.from_numpy(train_x)
+		train_y_t = torch.from_numpy(train_y)
+		test_x_t = torch.from_numpy(test_x)
+		
 		# initialize likelihood and model		
 		likelihood = gpytorch.likelihoods.GaussianLikelihood()
 		# Defining models for GPR
-		model = ExactGPModel(train_x, train_y, likelihood)
+		model = ExactGPModel(train_x_t, train_y_t, likelihood)
 		# Find optimal model hyperparameters
 		model.train()
 		likelihood.train()
@@ -84,9 +88,9 @@ class gaussianProcessRegression:
 			# Zero gradients from previous iteration
 			optimizer.zero_grad()
 			# Output from model
-			output = model(train_x)
+			output = model(train_x_t)
 			# Calc loss and backprop gradients
-			loss = -mll(output, train_y)
+			loss = -mll(output, train_y_t)
 			
 			loss.backward()
 			print('Iter %d/%d - Loss: %.3f   lengthscale: %.3f   noise: %.3f' % (
@@ -105,7 +109,7 @@ class gaussianProcessRegression:
 		# Test points are regularly spaced along [0,1]
 		# # Make predictions by feeding model through likelihood
 		with torch.no_grad(), gpytorch.settings.fast_pred_var():
-			observed_pred = likelihood(model(test_x))
+			observed_pred = likelihood(model(test_x_t))
 			
 		with torch.no_grad():
 			# Calculating upper and lower bounds of model predictions
