@@ -38,7 +38,7 @@ if doesDataFileExist == True:
 	master_feature_output = np.load('master_feature_output.npy', )
 	
 """
-STEP 2: Data preprocessing
+STEP 2a: Data preprocessing
 1. Selects the parameters sampled in LHS from total 35 parameters of the SE model
 2. PCA on the out shape features.
 """
@@ -63,6 +63,46 @@ data_x = StandardScaler().fit_transform(data_x)
 # Selecting PC1 as our 1st output to the multidimensional input
 data_y = principalComponents[:,0]
 
+"""
+Step 2b: Extracting EFD coefficients from the target experimental image data
+a) Extracts EFD coeeficients
+b) Trandforms to PC space
+c) Calculates PC1 or y_target for calculation of the acquisition function
+"""
+geometry_data_target_disc = 'vertices_target.txt'
+if type(geometry_data) is str:
+	if os.stat(geometry_data).st_size != 0:
+		a1 = []
+		a2 = []
+		with open(geometry_data) as f:
+			for line in f:
+				data = line.split()
+				a1.append(float(data[0]))
+				a2.append(float(data[1]))
+				
+	else:
+		a1 = 0
+		a2 = 0
+		
+vpos_x_exp = a1
+vpos_y_exp = a2
+
+coeff_exp = spatial_efd.CalculateEFD(vpos_x_exp, vpos_y_exp, 20)
+# Normalizing the coefficients against rotation and size
+coeff_exp, rotation = spatial_efd.normalize_efd(coeff_exp, size_invariant=True)
+# Reverse EFD for plotting the normalized tissue shape
+xt, yt = spatial_efd.inverse_transform(coeff_exp, harmonic=20)
+efd_coeff_exp_reshaped = np.reshape(coeff_exp, (80,))
+
+efd_coeff_exp_normalized = (np.add(np.multiply(efd_coeff_exp_reshaped,data_efd_variance), data_efd_mean)) 
+efd_coeff_exp_normalized = np.reshape(efd_coeff_exp_normalized, (80,1))
+# Multiplying EFD coefficients by already obtained weight of pc
+efd_coeff_exp_normalized_pc = np.matmul(weights,efd_coeff_exp_normalized)
+# Reshaping array for appending to the original data array
+y_exp = np.reshape(efd_coeff_exp_normalized_pc, (1,8))
+y_target = efd_coeff_exp_normalized_pc[0]
+		
+	 
 """
 Step 3: class ExactGP Model 
         Needs to be executed to execute the 
@@ -116,7 +156,7 @@ for i in range(maxIter):
 	# Calling in the acquisition function class
 	af = acqisitionFunctions(x, test_x, test_y)
 	# Calculating the xpected improvement
-	ei = af.expected_improvement(model, likelihood, 0.9)
+	ei = af.expected_improvement(model, likelihood, 0.9, y_target)
 	# Finding the indez that leads to maximum acquisition function
 	x_sampled_index = np.argmax(ei)
 	# Assessing the new sampled value
