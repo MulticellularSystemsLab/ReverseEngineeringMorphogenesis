@@ -11,8 +11,8 @@ import flow
 from flow import FlowProject, directives
 # Importing the geometry_writer class containing geometryWriter function that is used to write
 # Surface Evolver initialization file
-from geometry_writer import geometryWriter
-from feature_extractor_3 import FeatureExtractor
+from dependencies.geometry_writer import geometryWriter
+from dependencies.feature_extractor_4 import FeatureExtractor
 
 # Checking if an operation has been executed by checking f the initialization file exists
 @FlowProject.label

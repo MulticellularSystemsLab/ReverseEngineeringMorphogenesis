@@ -19,11 +19,11 @@ from matplotlib import pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from smt.sampling_methods import LHS
 # Importing helper libraries for bayesian optimization
-from data_preprocessing_class import dataPreprocessing
-from gaussian_process_regression_class import gaussianProcessRegression
-from acquisition_functions_class import acqisitionFunctions
-from geometry_writer import geometryWriter
-from feature_extractor_4 import FeatureExtractor
+from dependencies.data_preprocessing_class import dataPreprocessing
+from dependencies.gaussian_process_regression_class import gaussianProcessRegression
+from dependencies.acquisition_functions_class import acqisitionFunctions
+from dependencies.geometry_writer import geometryWriter
+from dependencies.feature_extractor_4 import FeatureExtractor
 
 """
 STEP 0:
@@ -68,7 +68,14 @@ Step 2b: Extracting EFD coefficients from the target experimental image data
 a) Extracts EFD coeeficients
 b) Trandforms to PC space
 c) Calculates PC1 or y_target for calculation of the acquisition function
+	
+iMPORTANT NOTE: Currently the code takes in a synthetic vertices file generated as a output 
+of a surface evolver simulations with known parameters.
+
 """
+"""
+# Reading in experimental data as a list of xy points representing the tissue lateral shape
+# Commented out for benchmarking the pipeline against a synthetic input generated using SE
 geometry_data_target_disc = 'vertices_target.txt'
 if type(geometry_data) is str:
 	if os.stat(geometry_data).st_size != 0:
@@ -90,11 +97,16 @@ vpos_y_exp = a2
 coeff_exp = spatial_efd.CalculateEFD(vpos_x_exp, vpos_y_exp, 20)
 # Normalizing the coefficients against rotation and size
 coeff_exp, rotation = spatial_efd.normalize_efd(coeff_exp, size_invariant=True)
+"""
+# Reading the vertices output file from a sample SE simulation output with known parameters
+fe_exp = FeatureExtractor('input_data/vertices_target.txt', 'log_edges.xlsx')
+# Extracting the efd coefficients
+coeff_exp = fe_exp.tissue_efd_coeff(20)
 # Reverse EFD for plotting the normalized tissue shape
-xt, yt = spatial_efd.inverse_transform(coeff_exp, harmonic=20)
+xt_exp, yt_exp = spatial_efd.inverse_transform(coeff_exp, harmonic=20)
 efd_coeff_exp_reshaped = np.reshape(coeff_exp, (80,))
 
-efd_coeff_exp_normalized = (np.add(np.multiply(efd_coeff_exp_reshaped,data_efd_variance), data_efd_mean)) 
+efd_coeff_exp_normalized = (np.divide(np.subtract(efd_coeff_exp_reshaped,data_efd_mean), data_efd_variance)) 
 efd_coeff_exp_normalized = np.reshape(efd_coeff_exp_normalized, (80,1))
 # Multiplying EFD coefficients by already obtained weight of pc
 efd_coeff_exp_normalized_pc = np.matmul(weights,efd_coeff_exp_normalized)
@@ -128,6 +140,8 @@ Step 5: Executing the loop for bayesian optimization
 
 """
 maxIter = 50
+error_target_sampled = []
+iter_counter = []
 
 for i in range(maxIter):
 	""" Step 5a: Training the GP model 
@@ -196,6 +210,7 @@ for i in range(maxIter):
 	fe = FeatureExtractor('vertices.txt', 'log_edges.xlsx')
 	efd_coeff_sampled = fe.tissue_efd_coeff(20)
 	efd_coeff_sampled_reshaped = np.reshape(efd_coeff_sampled, (80,))
+	xt_sampled, yt_sampled = spatial_efd.inverse_transform(efd_coeff_sampled, harmonic=20)
 	
 	"""Step 5e: Converting EFD to PC space
 	"""
@@ -213,37 +228,30 @@ for i in range(maxIter):
 	
 	""" Step 5g: Removing files for next iteration
 	"""
+	os.system("rm vertices.txt")
 	
+	"""Step 5h: Calculating errors and plotting deviation of
+					sampled shape from the target shape
+	"""
+	# Defining filename for plot showing overlap between the sampled shape and the target shape
+	filename_shape_plot = str(i) + "_sapled_target_xy_plot.svg"
+	# Plotting target data
+	plt.plot(xt_exp,yt_exp,'black', label='Target')
+	# Plotting sampled data
+	plt.plot(xt_sampled, yt_sampled,'blue', label='Experimental')
+	plt.axes().set_aspect('equal', 'datalim')
+	# Labeling axes
+	plt.xlabel("x [nondimensional]")
+	plt.ylabel("y [nondimensional]")
+	# Plotting legends
+	plt.legend()
+	plt.savefig("contour_evolution_plots/" + filename_shape_plot)
+	plt.close()
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
- 
-
-
-
-
-
-print(np.shape(efd_coeff_sampled_normalized_pc))
-
-"""STEP 5: UPDATING TRAINING DATA"""
-#data_y = np.vstack((data_y, y_sampled[0,0]))
-
-print(np.shape(data_x))
+	# Calculating error: Error is calculated as a norm of difference between target and sampled EFD coefficients
+	error_target_sampled_step =  np.linalg.norm(efd_coeff_exp_reshaped-efd_coeff_sampled_reshaped)
+	error_target_sampled.append(error_target_sampled_step)
+	iter_counter.append(i+1)
 
 
 

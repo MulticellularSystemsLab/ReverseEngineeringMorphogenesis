@@ -33,7 +33,7 @@ paraminputs:
 27. PARAMETER l_cuboidal_basal 
 28. PARAMETER l_cuboidal_lateral 
 29. PARAMETER l_columnar_apical 
-30. PARAMETER l_columnar_basal 
+30. PARAMETER l_columnar_basal ----- [to vary 0.0.5 2]
 31. PARAMETER l_columnar_lateral 
 32. PARAMETER l_squamous_cuboidal 
 33. PARAMETER l_cuboidal_columnar 

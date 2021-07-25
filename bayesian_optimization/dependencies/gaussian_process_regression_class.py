@@ -138,7 +138,7 @@ class gaussianProcessRegression:
 		plt.xlabel(" True output")
 		plt.ylabel(" predicted output ")
 		# Saving the figure
-		plt.savefig(filename)
+		plt.savefig("gpr_model_accuracy_plots/" + filename)
 		# returning the gpr modeling
 		return model, likelihood
 		
