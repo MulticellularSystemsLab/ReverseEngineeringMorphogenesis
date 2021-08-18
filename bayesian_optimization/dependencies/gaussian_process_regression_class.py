@@ -122,7 +122,7 @@ class gaussianProcessRegression:
 			# fetching actual output data
 			original_output = test_y
 		
-		filename = str(fileNameID) + ".jpg"
+		filename = str(fileNameID) + ".png"
 		# Calculating total error in predictions 
 		error_prediction = np.subtract(upper_numpy, lower_numpy)
 		# Discretizing coordinate system for updating the parietal_plots
@@ -139,6 +139,7 @@ class gaussianProcessRegression:
 		plt.ylabel(" predicted output ")
 		# Saving the figure
 		plt.savefig("gpr_model_accuracy_plots/" + filename)
+		plt.close()
 		# returning the gpr modeling
 		return model, likelihood
 		

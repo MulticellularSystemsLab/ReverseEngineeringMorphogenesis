@@ -15,6 +15,8 @@ import os.path
 import os
 import torch
 import gpytorch
+import subprocess
+import gc
 from matplotlib import pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from smt.sampling_methods import LHS
@@ -44,6 +46,7 @@ STEP 2a: Data preprocessing
 """
 data_efd_mean = np.mean(master_feature_output,axis = 0)
 data_efd_variance = np.std(master_feature_output,axis = 0)
+data_efd_variance[0,] = 10**-33
 # Loading in the data processing class
 dataPreprocess  = dataPreprocessing(master_parameter_input_n, master_feature_output, 133)
 # Converting the input parameters to logscale
@@ -60,6 +63,8 @@ data_x_mean = np.mean(data_x, axis=0)
 data_x_variance = np.std(data_x, axis=0)
 # Normalizing data
 data_x = StandardScaler().fit_transform(data_x)
+max_data_x = np.amax(data_x, axis=0) 
+min_data_x = np.amin(data_x, axis=0) 
 # Selecting PC1 as our 1st output to the multidimensional input
 data_y = principalComponents[:,0]
 
@@ -99,7 +104,7 @@ coeff_exp = spatial_efd.CalculateEFD(vpos_x_exp, vpos_y_exp, 20)
 coeff_exp, rotation = spatial_efd.normalize_efd(coeff_exp, size_invariant=True)
 """
 # Reading the vertices output file from a sample SE simulation output with known parameters
-fe_exp = FeatureExtractor('input_data/vertices_target.txt', 'log_edges.xlsx')
+fe_exp = FeatureExtractor('input_data/vertices_target_SE.txt', 'log_edges.xlsx')
 # Extracting the efd coefficients
 coeff_exp = fe_exp.tissue_efd_coeff(20)
 # Reverse EFD for plotting the normalized tissue shape
@@ -139,7 +144,7 @@ train_x, train_y, test_x, test_y = gpr.split_data(110, 133)
 Step 5: Executing the loop for bayesian optimization
 
 """
-maxIter = 50
+maxIter = 10
 error_target_sampled = []
 iter_counter = []
 
@@ -156,7 +161,7 @@ for i in range(maxIter):
 			Transform to parameter space
 	"""
 	# Method I: latine hypercube sampling
-	xlimits = np.array([[-2, 2],[-2, 2],[-2, 2],[-2, 2],[-2, 2],[-2, 2],[-2, 2]])
+	xlimits = np.array([[min_data_x[0], max_data_x[0]],[min_data_x[1], max_data_x[1]],[min_data_x[2], max_data_x[2]],[min_data_x[3], max_data_x[3]],[min_data_x[4], max_data_x[4]],[min_data_x[5], max_data_x[5]],[min_data_x[6], max_data_x[6]]])
 	sampling = LHS(xlimits = xlimits)
 	# Defining numvber of samples
 	num_samples = 1000000
@@ -164,20 +169,20 @@ for i in range(maxIter):
 	x = sampling(num_samples)
 	
 	# Method II: Random sampling
-	num_samples = 1000000
-	x = np.random.rand(num_samples, 7)
+	#num_samples = 1000000
+	#x = np.random.rand(num_samples, 7)
 	
 	# Calling in the acquisition function class
 	af = acqisitionFunctions(x, test_x, test_y)
 	# Calculating the xpected improvement
-	ei = af.expected_improvement(model, likelihood, 0.9, y_target)
+	ei = af.expected_improvement_modified(model, likelihood, y_target)
 	# Finding the indez that leads to maximum acquisition function
 	x_sampled_index = np.argmax(ei)
 	# Assessing the new sampled value
 	x_sampled_logscale_standardized = x[x_sampled_index,:]
 	# Converting x sampled into parameter space
 	# Multiplying by standard deviation and adding the mean pf data
-	x_sampled = 10**(np.add(np.multiply(x_sampled_logscale_standardized,data_x_variance), data_x_mean))
+	x_sampled = np.exp(np.add(np.multiply(x_sampled_logscale_standardized,data_x_variance), data_x_mean))
 	
 	"""Step 5c: Run surface evolver simulations
 	"""
@@ -224,11 +229,15 @@ for i in range(maxIter):
 	
 	""" Step 5f: Updating training data
 	"""
-	data_x = np.vstack((data_x, np.reshape(x_sampled,(1,7))))
+	train_x = np.vstack((train_x, np.reshape(x_sampled,(1,7))))
+	train_y = np.append(train_y,y_sampled[:,0],axis=0)
 	
 	""" Step 5g: Removing files for next iteration
 	"""
 	os.system("rm vertices.txt")
+	os.system("rm energylog.txt")
+	os.system("rm specificenergylog.txt")
+	
 	
 	"""Step 5h: Calculating errors and plotting deviation of
 					sampled shape from the target shape
@@ -238,7 +247,7 @@ for i in range(maxIter):
 	# Plotting target data
 	plt.plot(xt_exp,yt_exp,'black', label='Target')
 	# Plotting sampled data
-	plt.plot(xt_sampled, yt_sampled,'blue', label='Experimental')
+	plt.plot(xt_sampled, yt_sampled,'blue', label='Sampled')
 	plt.axes().set_aspect('equal', 'datalim')
 	# Labeling axes
 	plt.xlabel("x [nondimensional]")
@@ -252,6 +261,22 @@ for i in range(maxIter):
 	error_target_sampled_step =  np.linalg.norm(efd_coeff_exp_reshaped-efd_coeff_sampled_reshaped)
 	error_target_sampled.append(error_target_sampled_step)
 	iter_counter.append(i+1)
+	
+	del model
+	del likelihood
+	del xlimits
+	del x
+	del af
+	del ei
+	del paraminputs
+	del x_sampled
+	del fe
+	del xt_sampled
+	del yt_sampled
+	del sampling
+	gc.collect()
+	
+	
 
 
 

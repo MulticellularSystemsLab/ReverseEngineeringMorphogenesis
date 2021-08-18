@@ -14,6 +14,7 @@ import numpy as np
 import os
 import os.path
 from scipy.stats import norm
+import gc
 
 
 class acqisitionFunctions:
@@ -120,7 +121,8 @@ class acqisitionFunctions:
 			
 		# computes best error as minimum of min--x--(f_target - model_prediction)**2
 		error = (np.square(f_target - self.y_test))*(-1)
-		error_best = -1* np.max(error)
+		error_best = np.max(error)
+		error_best = error_best*-1
 		x_optimum = np.argmax(error)
 		
 		with np.errstate(divide='warn'):
@@ -152,6 +154,24 @@ class acqisitionFunctions:
 			
 			# EI = EI_term1 + EI_term_2 + EI_term_3
 			ei = ei_term_1 + ei_term_2 - ei_term_3
+			
+			del ei_term_1_component_1
+			del ei_term_1_component_2
+			del ei_term_2_component_1
+			del ei_term_2_component_2
+			del ei_term_2_component_3
+			del ei_term_3_component_1
+			del ei_term_3_component_2
+			del ei_term_3_component_3
+			del ei_term_3_component_4
+			del ei_term_1
+			del ei_term_2
+			del ei_term_3
+			del bound_upper
+			del bound_lower
+			gc.collect()
+			
+			 
 		
 		return ei
 		
