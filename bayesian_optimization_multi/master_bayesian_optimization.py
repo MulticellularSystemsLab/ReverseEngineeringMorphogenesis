@@ -44,8 +44,10 @@ STEP 2a: Data preprocessing
 1. Selects the parameters sampled in LHS from total 35 parameters of the SE model
 2. PCA on the out shape features.
 """
+# Storing the eman and standard deviation in EFD features
 data_efd_mean = np.mean(master_feature_output,axis = 0)
 data_efd_variance = np.std(master_feature_output,axis = 0)
+# Variance of EFD1 is 0. So a very small number is set to avoid 0 errors.
 data_efd_variance[0,] = 10**-33
 # Loading in the data processing class
 dataPreprocess  = dataPreprocessing(master_parameter_input_n, master_feature_output, 133)
@@ -170,6 +172,7 @@ for i in range(maxIter):
 	#num_samples = 1000000
 	#x = np.random.rand(num_samples, 7)
 	
+	# Initializing the expected improvement array
 	ei = np.zeros((num_samples,))
 	
 	for j in range(num_pc_components):
@@ -293,7 +296,8 @@ plt.ylabel(" Error target sampled ")
 # Saving the figure
 plt.savefig(filename_error_iteration)
 plt.close()
-	
+
+# Plotting the evolution of error between the taget shape and the sampled shape	
 filename_param_evolution = "param_evolution.png"
 for i in range(7):
 	plt.subplot(3,3,i+1)

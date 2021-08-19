@@ -106,7 +106,7 @@ class acqisitionFunctions:
 				(f_target - [mean_prediction_gpr) +- (sqrt(error_best)]/sigma_predictive_gpr
 				
 			Output:
-				Expected Improvement								    
+				Expected Improvement, model prediction mean, model prediction variance								    
 		"""
 		# Get into evaluation (predictive posterior) mode
 		model_gpr.eval()
@@ -155,6 +155,7 @@ class acqisitionFunctions:
 			# EI = EI_term1 + EI_term_2 + EI_term_3
 			ei = ei_term_1 + ei_term_2 - ei_term_3
 			
+			# Deleting the variables not in use
 			del ei_term_1_component_1
 			del ei_term_1_component_2
 			del ei_term_2_component_1

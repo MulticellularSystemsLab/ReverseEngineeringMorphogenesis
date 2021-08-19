@@ -56,9 +56,15 @@ class gaussianProcessRegression:
 	def GP_Regressor(self, train_x, train_y_all_pc, test_x, test_y_all_pc, training_iter, fileNameID, ExactGPModel, pc_index):
 		"""
 		Arguements:
-			training data and test data: train_x,y, test-x,y
-			training_iter: number of training iterations
-			fileNameId: The id of the filename
+			train_x: training data. Input normalized sampled SE parameters in the screen 
+			train_y_all_pc: output training data contains all the PCs (8) for the output shape features. 
+			test_x and test_y_all_pc are the correposnding test datasets
+			training_iter: Number of iterations for training the GPR model
+			fileNameID: Bae of the file that saves the predictions vs true output
+			ExactGPModel: A class containing settings (kernel definition and priors) for training a many-one GP model
+			pc_index: The principal component for which the model has to be trained and tested
+			
+			pcIndex
 			
 		Operations:
 			The portion of code fits a gpr on the training data. The later
@@ -68,6 +74,7 @@ class gaussianProcessRegression:
 			The GPR model
 			Likelihood of the model
 		"""
+		# Converting the numpy arrays to torch tensor format
 		train_x_t = torch.from_numpy(train_x)
 		train_y_t = torch.from_numpy(train_y_all_pc[:,pc_index])
 		test_x_t = torch.from_numpy(test_x)
