@@ -1,0 +1,1001 @@
+
+STRING
+space_dimension 2
+
+PRESSURE 0.001
+
+PARAMETER squamous_apical = 0
+PARAMETER squamous_basal = 3.162277660168379e-08
+PARAMETER squamous_lateral = 0
+PARAMETER cuboidal_apical = 0
+PARAMETER cuboidal_basal = 3.162277660168379e-08
+PARAMETER cuboidal_lateral = 0
+PARAMETER columnar_apical = 0
+PARAMETER columnar_basal = 1e-05
+PARAMETER columnar_lateral = 0
+PARAMETER squamous_cuboidal = 0
+PARAMETER cuboidal_columnar = 0
+PARAMETER k_squamous_apical = 0.1
+PARAMETER k_squamous_basal = 0.1
+PARAMETER k_squamous_lateral = 10
+PARAMETER k_cuboidal_apical = 0.1
+PARAMETER k_cuboidal_basal = 0.1
+PARAMETER k_cuboidal_lateral = 0.1
+PARAMETER k_columnar_apical = 0.01
+PARAMETER k_columnar_basal = 3.9810717055349695e-05
+PARAMETER k_columnar_lateral = 0.01
+PARAMETER k_squamous_cuboidal = 0.001
+PARAMETER k_cuboidal_columnar = 0.001
+PARAMETER l_squamous_apical = 1
+PARAMETER l_squamous_basal = 1
+PARAMETER l_squamous_lateral = 0.6
+PARAMETER l_cuboidal_apical = 0.6
+PARAMETER l_cuboidal_basal = 0.6
+PARAMETER l_cuboidal_lateral = 0.6
+PARAMETER l_columnar_apical = 0.2
+PARAMETER l_columnar_basal = 0.1
+PARAMETER l_columnar_lateral = 3
+PARAMETER l_squamous_cuboidal = 0.6
+PARAMETER l_cuboidal_columnar = 1.8
+PARAMETER k_ecm_basal = 0.002511886431509582
+PARAMETER k_lumen_apical = 0.001
+
+PARAMETER hooke2_power = 4
+define edge attribute k_spring real
+define edge attribute hooke_size real
+QUANTITY slinky ENERGY method hooke2_energy global element_modulus k_spring
+
+define edge attribute sqcurve_string_mark integer
+QUANTITY sqc_c1 ENERGY method sqcurve_string_marked global modulus k_lumen_apical parameter_2 1 // Apical lumen
+QUANTITY sqc_c2 ENERGY method sqcurve_string_marked global modulus k_ecm_basal parameter_2 2 // Basal ECM
+
+
+vertices
+1  -0.000989952666896171 -0.232894615721402
+  2  0.920006674680423 -0.155262822770711
+  3   1.81108235541603 0.0693478327097603
+  4   2.65357076777416  0.41289926527522
+  5   3.44633922607361  0.83669663943599
+  6   4.20596689806539  1.29629222656242
+  7   4.96231695792821  1.74174622357794
+  8   5.74797545946785  2.11422661353384
+  9   6.58041537666709  2.34730852913088
+ 10   7.43965261096277   2.3589995401511
+ 11   8.27113871766229  2.11156726766783
+ 12   8.64969616634497  1.82389113159272
+ 13   8.92762328438053  1.38796933838076
+ 14   8.93014278903071 0.836372880346872
+ 15   8.56296809101445 0.483038670474611
+ 16   7.76229368536558 0.849161935378501
+ 17   7.30195776590832  1.01301027991144
+ 18   7.01677794178853 0.964498628505984
+ 19   6.79263287287867 0.857181241797077
+ 20   6.61651350669518 0.733454993357244
+ 21   6.47061479861638 0.611302173720719
+ 22   6.34132736242515 0.496363304029819
+ 23   6.22249985473988 0.391756983241465
+ 24   6.10264293044117 0.291429063958493
+ 25   5.97798109926436 0.194845887485289
+ 26   5.84876777833599 0.103828019267827
+ 27   5.71500496370997 0.019117974977664
+ 28   5.57713748252736 -0.0587973902905354
+ 29   5.43584608784037 -0.129676896548309
+ 30   5.29184240082074 -0.193516829391919
+ 31   5.14575441589431 -0.250498930439618
+ 32   4.99808471930039 -0.300924686691094
+ 33   4.84921042634767 -0.345158319838832
+ 34   4.69940273323475 -0.383585931810505
+ 35   4.54885492621375 -0.416590082353375
+ 36    4.3977156265591 -0.44453640355232
+ 37   4.24613009468119 -0.467768893460575
+ 38   4.09428467576075 -0.486613000656524
+ 39   3.94235108066551 -0.501392952751333
+ 40   3.79031129163676 -0.512444810421029
+ 41   3.63811664653737 -0.520090912308027
+ 42   3.48580864955413 -0.524636899063698
+ 43   3.33348138704554 -0.526381533968585
+ 44   3.18124829589765 -0.525620099962356
+ 45   3.02922572788738 -0.522644039028639
+ 46   2.87752523468702 -0.517739365336022
+ 47   2.72625006255139 -0.511184903423266
+ 48   2.57549372731037 -0.50325073626789
+ 49   2.42533962625814 -0.494196969990256
+ 50   2.27586116602903 -0.48427280723181
+ 51   2.12712216558153 -0.473715879237026
+ 52   1.97917744833423 -0.462751776422302
+ 53    1.8320736029594  -0.4515937170052
+ 54   1.68584986835476 -0.440442290823449
+ 55   1.54053897337194 -0.429485205972408
+ 56   1.39616754242317 -0.418896953581567
+ 57   1.25275543825752 -0.408838306850176
+ 58   1.11031333990452 -0.399455609059998
+ 59  0.968838194444674 -0.390879897257353
+ 60  0.828307009848166 -0.383226029709323
+ 61  0.688670417923776 -0.376592063680557
+ 62  0.549847885956943 -0.37105909431074
+ 63  0.411726041255658 -0.366691618605333
+ 64  0.274160600639247 -0.363538313657285
+ 65  0.136981492491746 -0.361633002935553
+ 66  3.00319971073617e-007 -0.360995558929314
+ 67  -0.136980885661192 -0.361632533147791
+ 68  -0.274159976215301 -0.363537381077688
+ 69  -0.411725390734275 -0.366690237326165
+ 70  -0.549847205529399 -0.371057285698451
+ 71  -0.688669710027761 -0.376589856586448
+ 72  -0.828306284319263 -0.383223460651104
+ 73  -0.968837469121765 -0.390877010502661
+ 74  -1.11031264062642 -0.399452456553073
+ 75  -1.25275479834209 -0.40883494795178
+ 76  -1.39616700186974 -0.418893454629665
+ 77  -1.54053857807466 -0.429481639697844
+ 78    -1.685849669529 -0.440438735657179
+ 79  -1.83207365683515 -0.451590256295071
+ 80   -1.9791778160534 -0.462748497552641
+ 81  -2.12712291318682 -0.473712872625712
+ 82  -2.27586236443304 -0.484270165170634
+ 83  -2.42534135109598 -0.494194785293156
+ 84  -2.57549605858355 -0.503249100695856
+ 85  -2.72625308395402 -0.511183905863905
+ 86  -2.87752903247165 -0.517739089733185
+ 87   -3.0292303890783 -0.522644562087474
+ 88  -3.18125390561537 -0.525621488704569
+ 89  -3.33348802466446 -0.526383843287204
+ 90  -3.48581638344747 -0.524640169529758
+ 91  -3.63812552729995 -0.520095168611431
+ 92  -3.79032134465101 -0.512450060917786
+ 93  -3.94236230376011 -0.501399190217277
+ 94  -4.09429706892537 -0.486620200958461
+ 95  -4.24614370809565 -0.467777007811646
+ 96  -4.39773048980433 -0.444545362742141
+ 97   -4.5488710197657 -0.41659980382214
+ 98  -4.69941999898738 -0.38359632257946
+ 99  -4.84922876422325 -0.345169281131793
+100  -4.99810397431018 -0.300936122671124
+101  -5.14577435556534 -0.250510764001054
+102  -5.29186269115237 -0.193529027950733
+103  -5.43586626797825 -0.129689509934821
+104  -5.57715695462709 -0.0588106009624518
+105   -5.7150230029689 0.0191037965574003
+106  -5.84878357953456 0.103812262562702
+107  -5.97799383278726 0.194827658165799
+108   -6.1026516790504 0.291407052428605
+109  -6.22250203442161 0.391728047332118
+110  -6.34132055617342 0.496323941136296
+111  -6.47059238865282 0.611245004514631
+112  -6.61646981491926  0.73337579631179
+113  -6.79256293858374 0.857082304653963
+114  -7.01668826720325 0.964395302706297
+115  -7.30185904506331  1.01291667603596
+116  -7.76220382072982 0.849089503163842
+117  -8.56289779422686 0.483005535519359
+118  -8.93005038618693 0.836351958189162
+119  -8.92751770356869  1.38792741677643
+120  -8.64959666311142  1.82383650113029
+121  -8.27104414967399  2.11151326803563
+122  -7.43956801211689  2.35896815147302
+123  -6.58033157828712   2.3473436689811
+124   -5.7478626688533   2.1143755200499
+125  -4.96215211856326  1.74199112346333
+126  -4.20573869671779   1.2966067575767
+127  -3.44603824991676 0.837047516988314
+128  -2.65317028485684 0.413241976142878
+129  -1.81048417119029 0.0696943118461574
+130  -0.919102725255737 -0.154612166655008
+131  -0.000992230540871993  0.38821402001199
+132  0.873046166928059 0.464705211825575
+133   1.72440994738187 0.685385087828664
+134   2.54060261672258  1.02501812948095
+135   3.32554331420367   1.4475083504508
+136    4.1004272446283  1.90974572495404
+137    4.8996866275194  2.36048689819651
+138   5.76359987642152  2.73345446408434
+139   6.77224336053822  2.93744427488559
+140   7.83457657231672  2.79453722846915
+141   8.72910174245258  2.20555102842102
+142    9.1080883679974  1.63351148154503
+143    9.2939540189053   1.0277131060074
+144   9.33965613131277 0.511269897540002
+145   9.31265210697104 0.0148479051868961
+146   9.16828841277584 -0.779684710741463
+147   9.07322508318136 -1.00997939003976
+148   8.98240461632392  -1.1766845444036
+149   8.88134308190154 -1.32984824397891
+150   8.76824446830316 -1.47584414649823
+151    8.6429697716301 -1.61630618987809
+152   8.50474149456322 -1.75285948995378
+153   8.35125320536309 -1.88769093625597
+154   8.19373410362184 -2.01194215987628
+155    8.0358100118102 -2.12496809909503
+156   7.87554778602845 -2.22982139932219
+157   7.71257211586418 -2.32769100273245
+158   7.54676175576027 -2.41934880671717
+159   7.37805266369935 -2.50528441347832
+160   7.20646184596301 -2.58590455765071
+161   7.03200880310466 -2.66146854618962
+162   6.85475668859865 -2.73223867990359
+163   6.67475201438291 -2.79839010516722
+164   6.49205454640201  -2.8601226611955
+165    6.3066965363527 -2.91758809124069
+166   6.11869271557604 -2.97096102438454
+167   5.92800602208237 -3.02039633459851
+168   5.73454517505614 -3.06606409309561
+169   5.53830753245269 -3.10809365672907
+170   5.33967961922796 -3.14654642347691
+171   5.13916046366467 -3.18149077303264
+172   4.93713453434385  -3.2130480724937
+173   4.73389805896753 -3.24137288175088
+174   4.52969373858149  -3.2666410580537
+175   4.32472785451299  -3.2890413359218
+176   4.11917894802694 -3.30877090185581
+177   3.91320256686474 -3.32603151334783
+178   3.70693420197112 -3.34102659443495
+179   3.50049118128447 -3.35395853383004
+180   3.29397388404644 -3.36502635648616
+181   3.08746637966304 -3.37442358851651
+182    2.8810365107238 -3.38233637219909
+183   2.67473540797909 -3.38894179320514
+184   2.46859649134752  -3.3944064421983
+185   2.26263419462556 -3.39888520869065
+186   2.05684297931411 -3.40252032247933
+187   1.85119759640618 -3.40544065466602
+188   1.64565575413327 -3.40776129619339
+189   1.44016395746651 -3.40958342462475
+190   1.23466612718987 -3.41099445134872
+191   1.02911317465502  -3.4120684075411
+192  0.823471003334597 -3.41286649339758
+193  0.617725006458445 -3.41343769793044
+194  0.411880549485915 -3.41381940317017
+195  0.205960161954248 -3.41403790755798
+196  -1.35784486550496e-006 -3.41410882548492
+197  -0.205962883215917 -3.41403733662925
+198  -0.411883286984102 -3.41381827062247
+199  -0.617727769430339 -3.41343602235902
+200  -0.82347379869843 -3.41286430263683
+201  -1.02911600628823 -3.41206573860116
+202  -1.23466899556825 -3.41099135034051
+203   -1.4401668598825 -3.40957994667804
+204  -1.64565868561734 -3.40775750536118
+205  -1.85120055125662 -3.40543662379841
+206  -2.05684595291131  -3.4025161330256
+207   -2.2626371851291 -3.39888095039662
+208  -2.46859950099444 -3.39440221263576
+209  -2.67473844391162 -3.38893769714099
+210  -2.88103958542701 -3.38233252070565
+211  -3.08746951114629 -3.37442009796408
+212  -3.29397709585971 -3.36502334712156
+213  -3.50049450244377 -3.35395612852172
+214   -3.7069376667427 -3.34102491646993
+215  -3.91320621451422 -3.32603068551451
+216   -4.1191828222037 -3.30877104248744
+217   -4.3247320029003     -3.2890425605
+218  -4.52969821127455 -3.26664346960908
+219  -4.73390290892652 -3.24137658298747
+220  -4.93713981249929 -3.21305313574495
+221  -5.13916622471006 -3.18149729142733
+222  -5.33968590257011 -3.14655440828268
+223  -5.53831438329393 -3.10810322445774
+224  -5.73455252178847  -3.0660751370119
+225  -5.92801373302245 -3.02040914539681
+226  -6.11870048588428 -2.97097526217403
+227  -6.30670437040292 -2.91760440465543
+228  -6.49206203660871 -2.86014017515034
+229  -6.67475945659743 -2.79841009092947
+230  -6.85476339123589 -2.73225947197535
+231  -7.03201548932339 -2.66149220365291
+232   -7.2064674420976 -2.58592860009092
+233  -7.37805836463785 -2.50531146467838
+234  -7.54676621901566 -2.41937599286807
+235  -7.71257679027169 -2.32772082681866
+236  -7.87555141246766 -2.22985131423086
+237  -8.03581389484085 -2.12499971286919
+238  -8.19373761522895 -2.01197352319763
+239  -8.35125988362303 -1.88772025204554
+240  -8.50475147640451 -1.75288412185628
+241  -8.64298514495526 -1.61632344863532
+242  -8.76826049515513 -1.47585541944452
+243  -8.88135843135284 -1.32985470326243
+244  -8.98241621463237 -1.17668683867056
+245  -9.07323194754163 -1.00997803580164
+246  -9.16828626692227 -0.779680045531274
+247  -9.31261121181453 0.0148584775577449
+248  -9.33958995034145 0.511274542876688
+249  -9.29386573867903  1.02770143029922
+250  -9.10799363615617  1.63345840911763
+251  -8.72901066237826  2.20548880397362
+252  -7.83451316904828  2.79449118151297
+253  -6.77221213645551  2.93746118018386
+254  -5.76369543064069  2.73360531529975
+255  -4.89980097649633  2.36076432498304
+256  -4.10055071461351  1.91012566486404
+257  -3.32570255607216   1.4479584873024
+258  -2.54084683346109  1.02549304352604
+259  -1.72480169999487 0.685809298043916
+260  -0.873592307427071 0.464935523941594
+
+edges
+1 1 2 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+2 2 3 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+3 3 4 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+4 4 5 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+5 5 6 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+6 6 7 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+7 7 8 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+8 8 9 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+9 9 10 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+10 10 11 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+11 11 12 tension cuboidal_apical sqcurve_string_mark 1 hooke_size l_cuboidal_apical k_spring k_cuboidal_apical 
+12 12 13 tension cuboidal_apical sqcurve_string_mark 1 hooke_size l_cuboidal_apical k_spring k_cuboidal_apical 
+13 13 14 tension cuboidal_apical sqcurve_string_mark 1 hooke_size l_cuboidal_apical k_spring k_cuboidal_apical 
+14 14 15 tension cuboidal_apical sqcurve_string_mark 1 hooke_size l_cuboidal_apical k_spring k_cuboidal_apical 
+15 15 16 tension cuboidal_apical sqcurve_string_mark 1 hooke_size l_cuboidal_apical k_spring k_cuboidal_apical 
+16 16 17 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+17 17 18 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+18 18 19 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+19 19 20 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+20 20 21 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+21 21 22 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+22 22 23 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+23 23 24 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+24 24 25 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+25 25 26 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+26 26 27 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+27 27 28 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+28 28 29 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+29 29 30 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+30 30 31 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+31 31 32 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+32 32 33 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+33 33 34 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+34 34 35 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+35 35 36 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+36 36 37 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+37 37 38 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+38 38 39 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+39 39 40 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+40 40 41 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+41 41 42 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+42 42 43 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+43 43 44 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+44 44 45 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+45 45 46 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+46 46 47 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+47 47 48 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+48 48 49 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+49 49 50 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+50 50 51 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+51 51 52 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+52 52 53 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+53 53 54 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+54 54 55 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+55 55 56 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+56 56 57 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+57 57 58 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+58 58 59 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+59 59 60 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+60 60 61 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+61 61 62 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+62 62 63 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+63 63 64 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+64 64 65 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+65 65 66 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+66 66 67 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+67 67 68 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+68 68 69 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+69 69 70 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+70 70 71 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+71 71 72 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+72 72 73 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+73 73 74 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+74 74 75 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+75 75 76 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+76 76 77 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+77 77 78 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+78 78 79 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+79 79 80 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+80 80 81 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+81 81 82 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+82 82 83 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+83 83 84 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+84 84 85 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+85 85 86 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+86 86 87 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+87 87 88 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+88 88 89 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+89 89 90 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+90 90 91 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+91 91 92 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+92 92 93 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+93 93 94 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+94 94 95 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+95 95 96 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+96 96 97 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+97 97 98 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+98 98 99 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+99 99 100 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+100 100 101 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+101 101 102 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+102 102 103 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+103 103 104 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+104 104 105 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+105 105 106 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+106 106 107 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+107 107 108 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+108 108 109 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+109 109 110 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+110 110 111 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+111 111 112 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+112 112 113 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+113 113 114 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+114 114 115 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+115 115 116 tension columnar_apical sqcurve_string_mark 1 hooke_size l_columnar_apical k_spring k_columnar_apical 
+116 116 117 tension cuboidal_apical sqcurve_string_mark 1 hooke_size l_cuboidal_apical k_spring k_cuboidal_apical 
+117 117 118 tension cuboidal_apical sqcurve_string_mark 1 hooke_size l_cuboidal_apical k_spring k_cuboidal_apical 
+118 118 119 tension cuboidal_apical sqcurve_string_mark 1 hooke_size l_cuboidal_apical k_spring k_cuboidal_apical 
+119 119 120 tension cuboidal_apical sqcurve_string_mark 1 hooke_size l_cuboidal_apical k_spring k_cuboidal_apical 
+120 120 121 tension cuboidal_apical sqcurve_string_mark 1 hooke_size l_cuboidal_apical k_spring k_cuboidal_apical 
+121 121 122 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+122 122 123 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+123 123 124 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+124 124 125 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+125 125 126 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+126 126 127 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+127 127 128 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+128 128 129 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+129 129 130 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+130 130 1 tension squamous_apical sqcurve_string_mark 1 hooke_size l_squamous_apical k_spring k_squamous_apical 
+131 131 132 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+132 132 133 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+133 133 134 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+134 134 135 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+135 135 136 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+136 136 137 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+137 137 138 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+138 138 139 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+139 139 140 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+140 140 141 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+141 141 142 tension cuboidal_basal sqcurve_string_mark 2 hooke_size l_cuboidal_basal k_spring k_cuboidal_basal 
+142 142 143 tension cuboidal_basal sqcurve_string_mark 2 hooke_size l_cuboidal_basal k_spring k_cuboidal_basal 
+143 143 144 tension cuboidal_basal sqcurve_string_mark 2 hooke_size l_cuboidal_basal k_spring k_cuboidal_basal 
+144 144 145 tension cuboidal_basal sqcurve_string_mark 2 hooke_size l_cuboidal_basal k_spring k_cuboidal_basal 
+145 145 146 tension cuboidal_basal sqcurve_string_mark 2 hooke_size l_cuboidal_basal k_spring k_cuboidal_basal 
+146 146 147 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+147 147 148 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+148 148 149 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+149 149 150 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+150 150 151 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+151 151 152 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+152 152 153 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+153 153 154 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+154 154 155 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+155 155 156 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+156 156 157 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+157 157 158 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+158 158 159 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+159 159 160 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+160 160 161 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+161 161 162 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+162 162 163 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+163 163 164 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+164 164 165 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+165 165 166 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+166 166 167 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+167 167 168 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+168 168 169 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+169 169 170 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+170 170 171 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+171 171 172 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+172 172 173 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+173 173 174 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+174 174 175 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+175 175 176 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+176 176 177 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+177 177 178 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+178 178 179 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+179 179 180 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+180 180 181 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+181 181 182 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+182 182 183 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+183 183 184 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+184 184 185 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+185 185 186 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+186 186 187 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+187 187 188 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+188 188 189 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+189 189 190 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+190 190 191 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+191 191 192 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+192 192 193 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+193 193 194 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+194 194 195 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+195 195 196 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+196 196 197 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+197 197 198 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+198 198 199 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+199 199 200 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+200 200 201 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+201 201 202 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+202 202 203 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+203 203 204 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+204 204 205 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+205 205 206 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+206 206 207 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+207 207 208 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+208 208 209 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+209 209 210 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+210 210 211 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+211 211 212 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+212 212 213 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+213 213 214 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+214 214 215 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+215 215 216 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+216 216 217 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+217 217 218 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+218 218 219 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+219 219 220 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+220 220 221 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+221 221 222 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+222 222 223 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+223 223 224 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+224 224 225 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+225 225 226 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+226 226 227 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+227 227 228 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+228 228 229 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+229 229 230 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+230 230 231 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+231 231 232 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+232 232 233 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+233 233 234 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+234 234 235 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+235 235 236 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+236 236 237 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+237 237 238 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+238 238 239 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+239 239 240 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+240 240 241 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+241 241 242 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+242 242 243 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+243 243 244 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+244 244 245 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+245 245 246 tension columnar_basal sqcurve_string_mark 2 hooke_size l_columnar_basal k_spring k_columnar_basal 
+246 246 247 tension cuboidal_basal sqcurve_string_mark 2 hooke_size l_cuboidal_basal k_spring k_cuboidal_basal 
+247 247 248 tension cuboidal_basal sqcurve_string_mark 2 hooke_size l_cuboidal_basal k_spring k_cuboidal_basal 
+248 248 249 tension cuboidal_basal sqcurve_string_mark 2 hooke_size l_cuboidal_basal k_spring k_cuboidal_basal 
+249 249 250 tension cuboidal_basal sqcurve_string_mark 2 hooke_size l_cuboidal_basal k_spring k_cuboidal_basal 
+250 250 251 tension cuboidal_basal sqcurve_string_mark 2 hooke_size l_cuboidal_basal k_spring k_cuboidal_basal 
+251 251 252 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+252 252 253 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+253 253 254 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+254 254 255 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+255 255 256 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+256 256 257 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+257 257 258 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+258 258 259 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+259 259 260 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+260 260 131 tension squamous_basal sqcurve_string_mark 2 hooke_size l_squamous_basal k_spring k_squamous_basal 
+261 131 1 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+262 132 2 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+263 133 3 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+264 134 4 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+265 135 5 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+266 136 6 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+267 137 7 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+268 138 8 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+269 139 9 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+270 140 10 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+271 141 11 tension squamous_cuboidal sqcurve_string_mark 0 hooke_size l_squamous_cuboidal k_spring k_squamous_cuboidal 
+272 142 12 tension cuboidal_lateral sqcurve_string_mark 0 hooke_size l_cuboidal_lateral k_spring k_cuboidal_lateral 
+273 143 13 tension cuboidal_lateral sqcurve_string_mark 0 hooke_size l_cuboidal_lateral k_spring k_cuboidal_lateral 
+274 144 14 tension cuboidal_lateral sqcurve_string_mark 0 hooke_size l_cuboidal_lateral k_spring k_cuboidal_lateral 
+275 145 15 tension cuboidal_lateral sqcurve_string_mark 0 hooke_size l_cuboidal_lateral k_spring k_cuboidal_lateral 
+276 146 16 tension cuboidal_columnar sqcurve_string_mark 0 hooke_size l_cuboidal_columnar k_spring k_cuboidal_columnar 
+277 147 17 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+278 148 18 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+279 149 19 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+280 150 20 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+281 151 21 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+282 152 22 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+283 153 23 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+284 154 24 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+285 155 25 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+286 156 26 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+287 157 27 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+288 158 28 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+289 159 29 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+290 160 30 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+291 161 31 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+292 162 32 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+293 163 33 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+294 164 34 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+295 165 35 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+296 166 36 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+297 167 37 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+298 168 38 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+299 169 39 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+300 170 40 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+301 171 41 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+302 172 42 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+303 173 43 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+304 174 44 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+305 175 45 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+306 176 46 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+307 177 47 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+308 178 48 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+309 179 49 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+310 180 50 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+311 181 51 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+312 182 52 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+313 183 53 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+314 184 54 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+315 185 55 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+316 186 56 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+317 187 57 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+318 188 58 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+319 189 59 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+320 190 60 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+321 191 61 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+322 192 62 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+323 193 63 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+324 194 64 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+325 195 65 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+326 196 66 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+327 197 67 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+328 198 68 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+329 199 69 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+330 200 70 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+331 201 71 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+332 202 72 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+333 203 73 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+334 204 74 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+335 205 75 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+336 206 76 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+337 207 77 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+338 208 78 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+339 209 79 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+340 210 80 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+341 211 81 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+342 212 82 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+343 213 83 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+344 214 84 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+345 215 85 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+346 216 86 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+347 217 87 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+348 218 88 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+349 219 89 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+350 220 90 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+351 221 91 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+352 222 92 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+353 223 93 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+354 224 94 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+355 225 95 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+356 226 96 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+357 227 97 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+358 228 98 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+359 229 99 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+360 230 100 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+361 231 101 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+362 232 102 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+363 233 103 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+364 234 104 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+365 235 105 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+366 236 106 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+367 237 107 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+368 238 108 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+369 239 109 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+370 240 110 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+371 241 111 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+372 242 112 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+373 243 113 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+374 244 114 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+375 245 115 tension columnar_lateral sqcurve_string_mark 0 hooke_size l_columnar_lateral k_spring k_columnar_lateral 
+376 246 116 tension cuboidal_columnar sqcurve_string_mark 0 hooke_size l_cuboidal_columnar k_spring k_cuboidal_columnar 
+377 247 117 tension cuboidal_lateral sqcurve_string_mark 0 hooke_size l_cuboidal_lateral k_spring k_cuboidal_lateral 
+378 248 118 tension cuboidal_lateral sqcurve_string_mark 0 hooke_size l_cuboidal_lateral k_spring k_cuboidal_lateral 
+379 249 119 tension cuboidal_lateral sqcurve_string_mark 0 hooke_size l_cuboidal_lateral k_spring k_cuboidal_lateral 
+380 250 120 tension cuboidal_lateral sqcurve_string_mark 0 hooke_size l_cuboidal_lateral k_spring k_cuboidal_lateral 
+381 251 121 tension squamous_cuboidal sqcurve_string_mark 0 hooke_size l_squamous_cuboidal k_spring k_squamous_cuboidal 
+382 252 122 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+383 253 123 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+384 254 124 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+385 255 125 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+386 256 126 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+387 257 127 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+388 258 128 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+389 259 129 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+390 260 130 tension squamous_lateral sqcurve_string_mark 0 hooke_size l_squamous_lateral k_spring k_squamous_lateral 
+
+faces
+1 1 -262 -131 261
+2 2 -263 -132 262
+3 3 -264 -133 263
+4 4 -265 -134 264
+5 5 -266 -135 265
+6 6 -267 -136 266
+7 7 -268 -137 267
+8 8 -269 -138 268
+9 9 -270 -139 269
+10 10 -271 -140 270
+11 11 -272 -141 271
+12 12 -273 -142 272
+13 13 -274 -143 273
+14 14 -275 -144 274
+15 15 -276 -145 275
+16 16 -277 -146 276
+17 17 -278 -147 277
+18 18 -279 -148 278
+19 19 -280 -149 279
+20 20 -281 -150 280
+21 21 -282 -151 281
+22 22 -283 -152 282
+23 23 -284 -153 283
+24 24 -285 -154 284
+25 25 -286 -155 285
+26 26 -287 -156 286
+27 27 -288 -157 287
+28 28 -289 -158 288
+29 29 -290 -159 289
+30 30 -291 -160 290
+31 31 -292 -161 291
+32 32 -293 -162 292
+33 33 -294 -163 293
+34 34 -295 -164 294
+35 35 -296 -165 295
+36 36 -297 -166 296
+37 37 -298 -167 297
+38 38 -299 -168 298
+39 39 -300 -169 299
+40 40 -301 -170 300
+41 41 -302 -171 301
+42 42 -303 -172 302
+43 43 -304 -173 303
+44 44 -305 -174 304
+45 45 -306 -175 305
+46 46 -307 -176 306
+47 47 -308 -177 307
+48 48 -309 -178 308
+49 49 -310 -179 309
+50 50 -311 -180 310
+51 51 -312 -181 311
+52 52 -313 -182 312
+53 53 -314 -183 313
+54 54 -315 -184 314
+55 55 -316 -185 315
+56 56 -317 -186 316
+57 57 -318 -187 317
+58 58 -319 -188 318
+59 59 -320 -189 319
+60 60 -321 -190 320
+61 61 -322 -191 321
+62 62 -323 -192 322
+63 63 -324 -193 323
+64 64 -325 -194 324
+65 65 -326 -195 325
+66 66 -327 -196 326
+67 67 -328 -197 327
+68 68 -329 -198 328
+69 69 -330 -199 329
+70 70 -331 -200 330
+71 71 -332 -201 331
+72 72 -333 -202 332
+73 73 -334 -203 333
+74 74 -335 -204 334
+75 75 -336 -205 335
+76 76 -337 -206 336
+77 77 -338 -207 337
+78 78 -339 -208 338
+79 79 -340 -209 339
+80 80 -341 -210 340
+81 81 -342 -211 341
+82 82 -343 -212 342
+83 83 -344 -213 343
+84 84 -345 -214 344
+85 85 -346 -215 345
+86 86 -347 -216 346
+87 87 -348 -217 347
+88 88 -349 -218 348
+89 89 -350 -219 349
+90 90 -351 -220 350
+91 91 -352 -221 351
+92 92 -353 -222 352
+93 93 -354 -223 353
+94 94 -355 -224 354
+95 95 -356 -225 355
+96 96 -357 -226 356
+97 97 -358 -227 357
+98 98 -359 -228 358
+99 99 -360 -229 359
+100 100 -361 -230 360
+101 101 -362 -231 361
+102 102 -363 -232 362
+103 103 -364 -233 363
+104 104 -365 -234 364
+105 105 -366 -235 365
+106 106 -367 -236 366
+107 107 -368 -237 367
+108 108 -369 -238 368
+109 109 -370 -239 369
+110 110 -371 -240 370
+111 111 -372 -241 371
+112 112 -373 -242 372
+113 113 -374 -243 373
+114 114 -375 -244 374
+115 115 -376 -245 375
+116 116 -377 -246 376
+117 117 -378 -247 377
+118 118 -379 -248 378
+119 119 -380 -249 379
+120 120 -381 -250 380
+121 121 -382 -251 381
+122 122 -383 -252 382
+123 123 -384 -253 383
+124 124 -385 -254 384
+125 125 -386 -255 385
+126 126 -387 -256 386
+127 127 -388 -257 387
+128 128 -389 -258 388
+129 129 -390 -259 389
+130 130 -261 -260 390
+131 -130 -129 -128 -127 -126 -125 -124 -123 -122 -121 -120 -119 -118 -117 -116 -115 -114 -113 -112 -111 -110 -109 -108 -107 -106 -105 -104 -103 -102 -101 -100 -99 -98 -97 -96 -95 -94 -93 -92 -91 -90 -89 -88 -87 -86 -85 -84 -83 -82 -81 -80 -79 -78 -77 -76 -75 -74 -73 -72 -71 -70 -69 -68 -67 -66 -65 -64 -63 -62 -61 -60 -59 -58 -57 -56 -55 -54 -53 -52 -51 -50 -49 -48 -47 -46 -45 -44 -43 -42 -41 -40 -39 -38 -37 -36 -35 -34 -33 -32 -31 -30 -29 -28 -27 -26 -25 -24 -23 -22 -21 -20 -19 -18 -17 -16 -15 -14 -13 -12 -11 -10 -9 -8 -7 -6 -5 -4 -3 -2 -1
+
+bodies
+1 1 volume 6.000000e-01
+2 2 volume 6.000000e-01
+3 3 volume 6.000000e-01
+4 4 volume 6.000000e-01
+5 5 volume 6.000000e-01
+6 6 volume 6.000000e-01
+7 7 volume 6.000000e-01
+8 8 volume 6.000000e-01
+9 9 volume 6.000000e-01
+10 10 volume 6.000000e-01
+11 11 volume 3.600000e-01
+12 12 volume 3.600000e-01
+13 13 volume 3.600000e-01
+14 14 volume 3.600000e-01
+15 15 volume 3.600000e-01
+16 16 volume 6.000000e-01
+17 17 volume 6.000000e-01
+18 18 volume 6.000000e-01
+19 19 volume 6.000000e-01
+20 20 volume 6.000000e-01
+21 21 volume 6.000000e-01
+22 22 volume 6.000000e-01
+23 23 volume 6.000000e-01
+24 24 volume 6.000000e-01
+25 25 volume 6.000000e-01
+26 26 volume 6.000000e-01
+27 27 volume 6.000000e-01
+28 28 volume 6.000000e-01
+29 29 volume 6.000000e-01
+30 30 volume 6.000000e-01
+31 31 volume 6.000000e-01
+32 32 volume 6.000000e-01
+33 33 volume 6.000000e-01
+34 34 volume 6.000000e-01
+35 35 volume 6.000000e-01
+36 36 volume 6.000000e-01
+37 37 volume 6.000000e-01
+38 38 volume 6.000000e-01
+39 39 volume 6.000000e-01
+40 40 volume 6.000000e-01
+41 41 volume 6.000000e-01
+42 42 volume 6.000000e-01
+43 43 volume 6.000000e-01
+44 44 volume 6.000000e-01
+45 45 volume 6.000000e-01
+46 46 volume 6.000000e-01
+47 47 volume 6.000000e-01
+48 48 volume 6.000000e-01
+49 49 volume 6.000000e-01
+50 50 volume 6.000000e-01
+51 51 volume 6.000000e-01
+52 52 volume 6.000000e-01
+53 53 volume 6.000000e-01
+54 54 volume 6.000000e-01
+55 55 volume 6.000000e-01
+56 56 volume 6.000000e-01
+57 57 volume 6.000000e-01
+58 58 volume 6.000000e-01
+59 59 volume 6.000000e-01
+60 60 volume 6.000000e-01
+61 61 volume 6.000000e-01
+62 62 volume 6.000000e-01
+63 63 volume 6.000000e-01
+64 64 volume 6.000000e-01
+65 65 volume 6.000000e-01
+66 66 volume 6.000000e-01
+67 67 volume 6.000000e-01
+68 68 volume 6.000000e-01
+69 69 volume 6.000000e-01
+70 70 volume 6.000000e-01
+71 71 volume 6.000000e-01
+72 72 volume 6.000000e-01
+73 73 volume 6.000000e-01
+74 74 volume 6.000000e-01
+75 75 volume 6.000000e-01
+76 76 volume 6.000000e-01
+77 77 volume 6.000000e-01
+78 78 volume 6.000000e-01
+79 79 volume 6.000000e-01
+80 80 volume 6.000000e-01
+81 81 volume 6.000000e-01
+82 82 volume 6.000000e-01
+83 83 volume 6.000000e-01
+84 84 volume 6.000000e-01
+85 85 volume 6.000000e-01
+86 86 volume 6.000000e-01
+87 87 volume 6.000000e-01
+88 88 volume 6.000000e-01
+89 89 volume 6.000000e-01
+90 90 volume 6.000000e-01
+91 91 volume 6.000000e-01
+92 92 volume 6.000000e-01
+93 93 volume 6.000000e-01
+94 94 volume 6.000000e-01
+95 95 volume 6.000000e-01
+96 96 volume 6.000000e-01
+97 97 volume 6.000000e-01
+98 98 volume 6.000000e-01
+99 99 volume 6.000000e-01
+100 100 volume 6.000000e-01
+101 101 volume 6.000000e-01
+102 102 volume 6.000000e-01
+103 103 volume 6.000000e-01
+104 104 volume 6.000000e-01
+105 105 volume 6.000000e-01
+106 106 volume 6.000000e-01
+107 107 volume 6.000000e-01
+108 108 volume 6.000000e-01
+109 109 volume 6.000000e-01
+110 110 volume 6.000000e-01
+111 111 volume 6.000000e-01
+112 112 volume 6.000000e-01
+113 113 volume 6.000000e-01
+114 114 volume 6.000000e-01
+115 115 volume 6.000000e-01
+116 116 volume 3.600000e-01
+117 117 volume 3.600000e-01
+118 118 volume 3.600000e-01
+119 119 volume 3.600000e-01
+120 120 volume 3.600000e-01
+121 121 volume 6.000000e-01
+122 122 volume 6.000000e-01
+123 123 volume 6.000000e-01
+124 124 volume 6.000000e-01
+125 125 volume 6.000000e-01
+126 126 volume 6.000000e-01
+127 127 volume 6.000000e-01
+128 128 volume 6.000000e-01
+129 129 volume 6.000000e-01
+131 131 volume 15 volconst 5
+
+read
+
+d_min := .3
+do_repel :=  { for ( inx := 1 ; inx < 16 ; inx++ )
+               	for ( jnx := 25 ; jnx < 100 ; jnx++ )
+                { 
+                  dis_ver := sqrt((vertex[inx].x - vertex[jnx].x)^2 + (vertex[inx].y - vertex[jnx].y)^2);
+                  if dis_ver < d_min then {vertex[inx].x := vertex[inx].x + ((d_min - dis_ver)/dis_ver)*(vertex[inx].x - vertex[jnx].x); vertex[inx].y := vertex[inx].y + ((d_min - dis_ver)/dis_ver)*(vertex[inx].y - vertex[jnx].y)};
+                };
+     
+               for ( inx := 116 ; inx < 130 ; inx++ )
+               	for ( jnx := 25 ; jnx < 100 ; jnx++ )
+                { 
+                  dis_ver := sqrt((vertex[inx].x - vertex[jnx].x)^2 + (vertex[inx].y - vertex[jnx].y)^2);
+                  if dis_ver < d_min then {vertex[inx].x := vertex[inx].x + ((d_min - dis_ver)/dis_ver)*(vertex[inx].x - vertex[jnx].x); vertex[inx].y := vertex[inx].y + ((d_min - dis_ver)/dis_ver)*(vertex[inx].y - vertex[jnx].y)};
+                };
+               recalc;
+             }
+
+report := { Eapicallumen := sqc_c1.value;
+            EECM := sqc_c2.value;
+            Espring := slinky.value;
+            printf "Apical-Lumen, ECM strength, Spring Energy, %f %f %f\n", Eapicallumen, EECM, Espring}
+ 
+c1 := {g 50 ; do_repel}
+c2 := {U; c1 100}
+
+c1 30000
+list vertices >> "vertices.txt"
+q
