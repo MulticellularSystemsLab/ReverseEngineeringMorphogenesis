@@ -68,8 +68,10 @@ class dataPreprocessing:
 		weights = pca.components_
 		# Sum of variance captured by each PC
 		total_variance_explained = sum(pca.explained_variance_ratio_)
+		# Weights of af
+		weight_af = pca.explained_variance_ratio_ / sum(pca.explained_variance_ratio_)
 		
-		return total_variance_explained, principalComponents, weights
+		return total_variance_explained, principalComponents, weights, weight_af
 	
 	def inputParameterSelection(self, num_parameters_LHS, LHS_parameter_index, master_parameter_input_log):
 		"""

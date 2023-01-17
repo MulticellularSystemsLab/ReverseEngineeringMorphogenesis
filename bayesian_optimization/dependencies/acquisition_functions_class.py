@@ -75,17 +75,17 @@ class acqisitionFunctions:
 			# improvement = (mu_gpr_prediction(Xsampled) - y_test(x_optimum) - exploration parameter)
 			improvement_var = model_predictions_mean - f_optimum - exploration_parameter
 			# Z = improvement / sigma_gpr_prediction(Xsampled)
-			z_var = improvement_var / model_predictions_variance
+			z_var = np.divide(improvement_var, model_predictions_variance)
 			# improvement*cdf(Z)
-			exploitation_term = improvement_var*norm.cdf(z_var)
+			exploitation_term = np.multiply(improvement_var, norm.cdf(z_var))
 			# sigma_gpr_prediction(Xsampled)*pdf(Z)
-			exploration_term = model_predictions_variance*norm.pdf(z_var)
+			exploration_term = np.multiply(model_predictions_variance, norm.pdf(z_var))
 			# expected_improvement
 			ei = exploitation_term + exploration_term
 			# Setting expected improvement as 0where sigma_prediction is 0
 			ei[model_predictions_variance == 0] = 0
 		
-		return ei
+		return ei, model_predictions_mean, model_predictions_variance 
 	
 	def expected_improvement_modified(self, model_gpr, likelihood_gpr, f_target):
 		"""
@@ -169,11 +169,13 @@ class acqisitionFunctions:
 			del ei_term_3
 			del bound_upper
 			del bound_lower
+			del error
+			del Xsampled_torch
 			gc.collect()
 			
 			 
 		
-		return ei
+		return ei		
 		
 		
 		

@@ -5,13 +5,13 @@ space_dimension 2
 PRESSURE 0.001
 
 PARAMETER squamous_apical = 0
-PARAMETER squamous_basal = 1.7557437295795317e-08
+PARAMETER squamous_basal = 0.0001
 PARAMETER squamous_lateral = 0
 PARAMETER cuboidal_apical = 0
-PARAMETER cuboidal_basal = 1.2161590563276566e-08
+PARAMETER cuboidal_basal = 0
 PARAMETER cuboidal_lateral = 0
 PARAMETER columnar_apical = 0
-PARAMETER columnar_basal = 0.006024706827603753
+PARAMETER columnar_basal = 0.001
 PARAMETER columnar_lateral = 0
 PARAMETER squamous_cuboidal = 0
 PARAMETER cuboidal_columnar = 0
@@ -21,9 +21,9 @@ PARAMETER k_squamous_lateral = 10
 PARAMETER k_cuboidal_apical = 0.1
 PARAMETER k_cuboidal_basal = 0.1
 PARAMETER k_cuboidal_lateral = 0.1
-PARAMETER k_columnar_apical = 1.6923856986436985e-05
-PARAMETER k_columnar_basal = 2.6660239859051077e-05
-PARAMETER k_columnar_lateral = 3.7927705543329626
+PARAMETER k_columnar_apical = 0.2193627591267099
+PARAMETER k_columnar_basal = 0.08580264976968051
+PARAMETER k_columnar_lateral = 0.004285359886088525
 PARAMETER k_squamous_cuboidal = 0.001
 PARAMETER k_cuboidal_columnar = 0.001
 PARAMETER l_squamous_apical = 1
@@ -32,12 +32,12 @@ PARAMETER l_squamous_lateral = 0.6
 PARAMETER l_cuboidal_apical = 0.6
 PARAMETER l_cuboidal_basal = 0.6
 PARAMETER l_cuboidal_lateral = 0.6
-PARAMETER l_columnar_apical = 0.2
-PARAMETER l_columnar_basal = 0.1
-PARAMETER l_columnar_lateral = 3
+PARAMETER l_columnar_apical = 0.05356256483982043
+PARAMETER l_columnar_basal = 0.06603004344185827
+PARAMETER l_columnar_lateral = 0.6639827129679401
 PARAMETER l_squamous_cuboidal = 0.6
 PARAMETER l_cuboidal_columnar = 1.8
-PARAMETER k_ecm_basal = 7.972322737674306e-08
+PARAMETER k_ecm_basal = 0.007227882768908741
 PARAMETER k_lumen_apical = 0.001
 
 PARAMETER hooke2_power = 4

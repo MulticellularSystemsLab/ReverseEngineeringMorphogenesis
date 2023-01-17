@@ -178,19 +178,20 @@ class FeatureExtractor:
 			# Using spatial efd library to extract efd coefficients from tissue boundary points
 			coeffs = spatial_efd.CalculateEFD(contour_basal_x, contour_basal_y, harmonic)
 			# Normalizing the coefficients against rotation and size
-			coeffs, rotation = spatial_efd.normalize_efd(coeffs, size_invariant=True)
+			coeffs_norm, rotation = spatial_efd.normalize_efd(coeffs, size_invariant=True)
 			
 			# Reverse EFD for plotting the normalized tissue shape
-			xt, yt = spatial_efd.inverse_transform(coeffs, harmonic=harmonic)
+			xt, yt = spatial_efd.inverse_transform(coeffs_norm, harmonic=harmonic)
 		else:
 			coeffs = 0
+			coeffs_norm = 0
 #		plt.plot(xt,yt,'black')
 #		plt.axes().set_aspect('equal', 'datalim')
 #		plt.xlabel("x [nondimensional]")
 #		plt.ylabel("y [nondimensional]")
 #		plt.show()
 		# Passing coefficient as a return value of this function
-		return coeffs
+		return coeffs, coeffs_norm, rotation
 	
 	
 	def tissue_local_curvature(self):
